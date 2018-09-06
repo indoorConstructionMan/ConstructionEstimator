@@ -30,7 +30,7 @@
         android:textColor="#FFFFFF"
         android:inputType="textEmailAddress"
         android:layout_weight="0.1"
-        android:hint="Username"
+        android:hint="@string/login_username"
         />
 
     <EditText
@@ -40,7 +40,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:layout_weight="0.1"
-        android:hint="Password"/>
+        android:hint="@string/login_password"/>
 
     <Button
         android:id="@+id/register"

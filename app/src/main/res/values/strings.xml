@@ -3,4 +3,18 @@
     <string name="welcome_title">Drywall Calculator</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="register_title">Create Account</string>
+    <string name="register_confirm_pw">Confirm Password</string>
+    <string name="register_email_address">Email address</string>
+    <string name="register_save_button">Save</string>
+    <string name="register_cancel_button">Cancel</string>
+    <string name="salutations">Welcome User</string>
+    <string name="new_contract">Create New Contract</string>
+    <string name="site_address">Address</string>
+    <string name="new_contract_title">Job Information</string>
+    <string name="bdft">Board Feet</string>
+    <string name="rate">Rate ($/board foot)</string>
+    <string name="setup_contract">Compute</string>
 </resources>

@@ -18,7 +18,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="40sp"
-        android:text="Create Account"
+        android:text="@string/register_title"
         android:padding="10dp"
         />
 
@@ -29,7 +29,7 @@
         android:layout_weight="0.5"
         android:ems="10"
         android:inputType="text"
-        android:hint="Username"/>
+        android:hint="@string/login_username"/>
 
     <EditText
         android:id="@+id/email_address"
@@ -38,7 +38,7 @@
         android:layout_weight="0.5"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Email Address"/>
+        android:hint="@string/register_email_address"/>
 
     <EditText
         android:id="@+id/password"
@@ -47,7 +47,7 @@
         android:layout_weight="0.5"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"/>
+        android:hint="@string/login_password"/>
 
     <EditText
         android:id="@+id/confirm_password"
@@ -57,7 +57,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:layout_marginBottom="20sp"
-        android:hint="Confirm Password"/>
+        android:hint="@string/register_confirm_pw"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:onClick="save"
-            android:text="save" />
+            android:text="@string/register_save_button" />
 
         <Button
             android:id="@+id/cancel"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:onClick="cancel"
-            android:text="cancel" />
+            android:text="@string/register_cancel_button" />
 
     </LinearLayout>
 

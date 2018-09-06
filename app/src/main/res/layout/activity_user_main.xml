@@ -18,15 +18,16 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="50sp"
-        android:text="Welcome user"
+        android:text="@string/salutations"
         android:padding="10dp"
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/create_new_contract"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.1"
-        android:text="Create New Contract" />
+        android:onClick="createNewContract"
+        android:text="@string/new_contract" />
 
 </LinearLayout>
