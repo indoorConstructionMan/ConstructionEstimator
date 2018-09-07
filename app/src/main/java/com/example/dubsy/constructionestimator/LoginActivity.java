@@ -11,8 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Model.UsersModel;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,11 +31,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
+
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
+
         if (TextUtils.isEmpty(username.getText()) || TextUtils.isEmpty(password.getText())){
             Toast.makeText(getApplicationContext(), "All fields Required",Toast.LENGTH_SHORT).show();
         } else {
+
             SQLiteDatabase db = UsersDbHelper.getInstance(getApplicationContext()).getReadableDatabase();
             String[] projection = {
                     BaseColumns._ID,

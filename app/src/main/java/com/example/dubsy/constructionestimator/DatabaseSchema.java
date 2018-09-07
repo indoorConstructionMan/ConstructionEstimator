@@ -12,4 +12,11 @@ public final class DatabaseSchema {
         public static final String COLUMN_NAME_PASSWORD = "password";
     }
 
+    public static class Contracts implements BaseColumns {
+        public static final String TABLE_NAME = "contracts";
+        public static final String COLUMN_NAME_ADDRESS = "address";
+        public static final String COLUMN_NAME_BOARD_FOOTAGE = "boardfootage";
+        public static final String COLUMN_NAME_RATE = "rate";
+    }
+
 }
