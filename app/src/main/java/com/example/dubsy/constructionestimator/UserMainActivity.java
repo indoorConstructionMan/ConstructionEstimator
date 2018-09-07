@@ -24,8 +24,8 @@ public class UserMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         salutations = findViewById(R.id.title);
-        String user = getIntent().getExtras().getString("user");
-        salutations.setText("Welcome " + user + "!");
+//        String user = getIntent().getExtras().getString("user");
+//        salutations.setText("Welcome " + user + "!");
 
         this.contractsList = findViewById(R.id.contractsList);
         // currently gets all contracts for all users.

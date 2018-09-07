@@ -31,7 +31,10 @@ public class ContractInformationActivity extends AppCompatActivity {
         );
 
         UsersDbHelper.getInstance(getApplicationContext()).createContract(m);
+        Toast.makeText(getApplicationContext(), "Contract saved!",Toast.LENGTH_SHORT).show();
+    }
 
+    public void backToUserActivity(View v) {
         Intent myIntent = new Intent(ContractInformationActivity.this, UserMainActivity.class);
         ContractInformationActivity.this.startActivity(myIntent);
         finish();
