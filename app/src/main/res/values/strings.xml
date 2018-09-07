@@ -16,5 +16,5 @@
     <string name="new_contract_title">Job Information</string>
     <string name="bdft">Board Feet</string>
     <string name="rate">Rate ($/board foot)</string>
-    <string name="setup_contract">Compute</string>
+    <string name="setup_contract">Save Contract</string>
 </resources>

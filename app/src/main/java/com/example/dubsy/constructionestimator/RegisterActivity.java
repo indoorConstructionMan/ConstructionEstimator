@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         String plaintextconfirm = password_confirm.getText().toString();
 
         if(plaintext.matches("") || plaintextconfirm.matches("") || username.getText().toString().matches("") || email.getText().toString().matches("")) {
-            Toast.makeText(getApplicationContext(),"You can't leave empty fields.",Toast.LENGTH_SHORT).show();
             empty = true;
         }
 
@@ -64,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Account was not created",Toast.LENGTH_SHORT).show();
         Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         RegisterActivity.this.startActivity(myIntent);
+        finish();
     }
 
 }

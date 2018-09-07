@@ -1,4 +1,5 @@
 package com.example.dubsy.constructionestimator;
+// This file currently does Users, and Contracts. Needs to be refactored.
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.provider.ContactsContract;
-import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Model.ContractsModel;
 import com.example.dubsy.constructionestimator.Model.UsersModel;
+
+import java.util.ArrayList;
 
 public class UsersDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
@@ -73,7 +75,7 @@ public class UsersDbHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public long createUserAccount(com.example.dubsy.constructionestimator.Model.UsersModel user) {
+    public long createUserAccount(UsersModel user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -126,5 +128,48 @@ public class UsersDbHelper extends SQLiteOpenHelper {
         return false;
     }
 
+
+    public long createContract(ContractsModel contract) {
+        long userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS, contract.getSiteAddress());
+        values.put(DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE, contract.getBoardFootage());
+        values.put(DatabaseSchema.Contracts.COLUMN_NAME_RATE, contract.getRate());
+
+        userId = db.insert(DatabaseSchema.Contracts.TABLE_NAME, null, values);
+
+        db.close();
+
+        return userId;
+    }
+
+    // sloppy/buggy implementation
+    public ArrayList<ContractsModel> grabAllContracts() {
+        ArrayList<ContractsModel> c = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectStatement = "SELECT * FROM CONTRACTS";
+
+        Cursor cursor = db.rawQuery(selectStatement, null);
+
+        if  (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                String address = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS));
+                String boardFeet = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE));
+                String rate = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_RATE));
+
+                c.add(new ContractsModel(address, boardFeet, rate));
+
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return c;
+    }
 
 }
