@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dubsy.constructionestimator.Model.ContractsModel;
+import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
+import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
 
 public class ContractInformationActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class ContractInformationActivity extends AppCompatActivity {
     }
 
     public void backToUserActivity(View v) {
-        Intent myIntent = new Intent(ContractInformationActivity.this, UserMainActivity.class);
+        Intent myIntent = new Intent(ContractInformationActivity.this, com.example.dubsy.constructionestimator.UserMainActivity.class);
         ContractInformationActivity.this.startActivity(myIntent);
         finish();
     }

@@ -1,15 +1,15 @@
 package com.example.dubsy.constructionestimator;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dubsy.constructionestimator.Model.UsersModel;
+import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
+import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
+import com.example.dubsy.constructionestimator.Utilities.md5;
 
 public class RegisterActivity extends AppCompatActivity {
 

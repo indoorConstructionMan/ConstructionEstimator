@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.dubsy.constructionestimator.Model.ContractsModel;
+import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
 
 import java.util.ArrayList;
 

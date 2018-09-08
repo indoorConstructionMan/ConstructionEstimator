@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserMainActivity" />
-        <activity android:name=".ContractInformationActivity"></activity>
+        <activity android:name=".ContractInformationActivity" />
+        <activity android:name=".DetailedJobActivity"></activity>
     </application>
 
 </manifest>
