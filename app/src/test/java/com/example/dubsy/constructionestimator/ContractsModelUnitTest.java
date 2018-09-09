@@ -43,16 +43,16 @@ public class ContractsModelUnitTest {
 
     @Test
     public void contractObjectSetAndGetRate() {
-        ContractsModel changeRate = new ContractsModel("old place","444","0.5");
-        assertEquals(0.5f, changeRate.getRate(), 0.001);
-        changeRate.setRate("0.24");
-        assertEquals(0.24f, changeRate.getRate(), 0.001);
+        ContractsModel changeRate = new ContractsModel("old place","444","5");
+        assertEquals(5, changeRate.getRate());
+        changeRate.setRate("24");
+        assertEquals(24, changeRate.getRate());
     }
 
     @Test
     public void contractObjectEquals() {
-        ContractsModel contract = new ContractsModel("jim","1234", "0.5");
-        assertEquals(true, contract.equals(new ContractsModel("jim","1234", "0.5")));
+        ContractsModel contract = new ContractsModel("jim","1234", "15");
+        assertEquals(true, contract.equals(new ContractsModel("jim","1234", "15")));
         assertEquals(false, contract.equals(new ContractsModel("jimmy","1234", "0.5")));
     }
 

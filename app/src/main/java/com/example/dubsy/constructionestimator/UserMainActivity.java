@@ -1,6 +1,5 @@
 package com.example.dubsy.constructionestimator;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
 import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
+import com.example.dubsy.constructionestimator.Utilities.UserSession;
 
 import java.util.ArrayList;
 

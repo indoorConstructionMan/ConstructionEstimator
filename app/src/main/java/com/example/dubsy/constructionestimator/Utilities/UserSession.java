@@ -1,4 +1,4 @@
-package com.example.dubsy.constructionestimator;
+package com.example.dubsy.constructionestimator.Utilities;
 
 public class UserSession {
     int uid;

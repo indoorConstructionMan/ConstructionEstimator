@@ -10,13 +10,13 @@ import android.provider.BaseColumns;
 
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
 import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
-import com.example.dubsy.constructionestimator.UserSession;
+import com.example.dubsy.constructionestimator.Utilities.UserSession;
 
 import java.util.ArrayList;
 
 public class UsersDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "drywall_contracts_database.db";
 
     //*********************************************************************************
@@ -39,7 +39,7 @@ public class UsersDbHelper extends SQLiteOpenHelper {
             DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS + " TEXT," +
             DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE + " INTEGER," +
             DatabaseSchema.Contracts.COLUMN_NAME_USER_ID + " INTEGER," +
-            DatabaseSchema.Contracts.COLUMN_NAME_RATE + " REAL, FOREIGN KEY (" +
+            DatabaseSchema.Contracts.COLUMN_NAME_RATE + " INTEGER, FOREIGN KEY (" +
             DatabaseSchema.Contracts.COLUMN_NAME_USER_ID + ") REFERENCES " +
             DatabaseSchema.Users.TABLE_NAME + "(" +
             DatabaseSchema.Users._ID + "));";

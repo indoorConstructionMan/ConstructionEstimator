@@ -4,7 +4,7 @@ public class ContractsModel {
 
     public String siteAddress;
     public int boardFootage;
-    public float rate;
+    public int rate;
 
     public ContractsModel(String address, String footage, String rate){
 
@@ -16,9 +16,9 @@ public class ContractsModel {
         }
 
         try {
-            this.rate = Float.parseFloat(rate);
+            this.rate = Integer.parseInt(rate);
         } catch (Exception e){
-            this.rate = 0.0f;
+            this.rate = 0;
         }
 
     }
@@ -40,10 +40,10 @@ public class ContractsModel {
     }
 
     public void setRate(String rate) {
-        this.rate = Float.parseFloat(rate);
+        this.rate = Integer.parseInt(rate);
     }
 
-    public float getRate() {
+    public int getRate() {
         return this.rate;
     }
 

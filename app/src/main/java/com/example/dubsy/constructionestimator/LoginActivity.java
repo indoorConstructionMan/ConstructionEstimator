@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dubsy.constructionestimator.Database.DatabaseSchema;
-import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
 import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
+import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
 import java.util.ArrayList;

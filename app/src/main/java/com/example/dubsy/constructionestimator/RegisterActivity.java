@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
 import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
+import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
 public class RegisterActivity extends AppCompatActivity {
