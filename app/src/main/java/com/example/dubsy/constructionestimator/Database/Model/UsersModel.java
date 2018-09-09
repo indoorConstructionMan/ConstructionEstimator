@@ -1,7 +1,7 @@
 package com.example.dubsy.constructionestimator.Database.Model;
 
 public class UsersModel {
-    int id;
+    int uid;
     String username;
     String emailAddress;
     String password;
@@ -37,11 +37,11 @@ public class UsersModel {
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.uid = id;
     }
 
     public int getId() {
-        return this.id;
+        return this.uid;
     }
 
 }

@@ -46,11 +46,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (new String(plaintext).equals(plaintextconfirm) && !empty) {
+            UserSession.getInstance().setEmail(email.getText().toString());
+            UserSession.getInstance().setUserName(username.getText().toString());
 
             UsersDbHelper.getInstance(getApplicationContext()).createUserAccount(user);
 
             Intent myIntent = new Intent(RegisterActivity.this, UserMainActivity.class);
-            myIntent.putExtra("user",username.getText().toString());
             RegisterActivity.this.startActivity(myIntent);
             finish();
         } else {

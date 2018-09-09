@@ -10,13 +10,14 @@ import android.provider.BaseColumns;
 
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
 import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
+import com.example.dubsy.constructionestimator.UserSession;
 
 import java.util.ArrayList;
 
 public class UsersDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 3;
-    public static final String DATABASE_NAME = "DrywallContract.db";
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "drywall_contracts_database.db";
 
     //*********************************************************************************
     // Users Table
@@ -37,7 +38,11 @@ public class UsersDbHelper extends SQLiteOpenHelper {
             DatabaseSchema.Contracts._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS + " TEXT," +
             DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE + " INTEGER," +
-            DatabaseSchema.Contracts.COLUMN_NAME_RATE + " REAL)";
+            DatabaseSchema.Contracts.COLUMN_NAME_USER_ID + " INTEGER," +
+            DatabaseSchema.Contracts.COLUMN_NAME_RATE + " REAL, FOREIGN KEY (" +
+            DatabaseSchema.Contracts.COLUMN_NAME_USER_ID + ") REFERENCES " +
+            DatabaseSchema.Users.TABLE_NAME + "(" +
+            DatabaseSchema.Users._ID + "));";
 
     private static final String SQL_DELETE_CONTRACTS_TABLE = "DROP TABLE IF EXISTS " + DatabaseSchema.Contracts.TABLE_NAME;
     // Contracts Table End
@@ -138,6 +143,7 @@ public class UsersDbHelper extends SQLiteOpenHelper {
         values.put(DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS, contract.getSiteAddress());
         values.put(DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE, contract.getBoardFootage());
         values.put(DatabaseSchema.Contracts.COLUMN_NAME_RATE, contract.getRate());
+        values.put(DatabaseSchema.Contracts.COLUMN_NAME_USER_ID, UserSession.getInstance().getUserId());
 
         userId = db.insert(DatabaseSchema.Contracts.TABLE_NAME, null, values);
 
@@ -147,10 +153,15 @@ public class UsersDbHelper extends SQLiteOpenHelper {
     }
 
     // sloppy/buggy implementation
-    public ArrayList<ContractsModel> grabAllContracts() {
+    public ArrayList<ContractsModel> grabAllContracts(boolean where, int id) {
         ArrayList<ContractsModel> c = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectStatement = "SELECT * FROM CONTRACTS";
+        String selectStatement = "";
+        if (where) {
+            selectStatement = "SELECT * FROM CONTRACTS WHERE " + DatabaseSchema.Contracts.COLUMN_NAME_USER_ID + " = " + id;
+        } else {
+            selectStatement = "SELECT * FROM CONTRACTS";
+        }
 
         Cursor cursor = db.rawQuery(selectStatement, null);
 
@@ -159,9 +170,7 @@ public class UsersDbHelper extends SQLiteOpenHelper {
                 String address = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_ADDRESS));
                 String boardFeet = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_BOARD_FOOTAGE));
                 String rate = cursor.getString(cursor.getColumnIndex(DatabaseSchema.Contracts.COLUMN_NAME_RATE));
-
                 c.add(new ContractsModel(address, boardFeet, rate));
-
                 cursor.moveToNext();
             }
         }
@@ -169,6 +178,23 @@ public class UsersDbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return c;
+    }
+
+    public int getUserId(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int returnValue = 0;
+        String selectStatement = "Select _ID from Users WHERE username = ?";
+        Cursor cursor = db.rawQuery(selectStatement, new String[]{username});
+        if  (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                returnValue = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DatabaseSchema.Users._ID)));
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return returnValue;
     }
 
 }

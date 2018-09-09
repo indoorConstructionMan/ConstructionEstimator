@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view) {
 
+        String uid = "";
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
 
@@ -77,11 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), username.getText().toString() + " does not exist.",Toast.LENGTH_SHORT).show();
             } else if (hashedPasswords.size() == 1) {
                 if (hashedPassword.equals(new md5().md5(password.getText().toString()))) {
+                    UserSession.getInstance().setUserName(username.getText().toString());
                     Toast.makeText(getApplicationContext(), "Logging in.",Toast.LENGTH_SHORT).show();
                     Intent myIntent = new Intent(LoginActivity.this, UserMainActivity.class);
-                    myIntent.putExtra("user",username.getText().toString());
                     LoginActivity.this.startActivity(myIntent);
-                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Try using the correct password instead.",Toast.LENGTH_SHORT).show();
                 }

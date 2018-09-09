@@ -17,6 +17,7 @@ public final class DatabaseSchema {
         public static final String COLUMN_NAME_ADDRESS = "address";
         public static final String COLUMN_NAME_BOARD_FOOTAGE = "boardfootage";
         public static final String COLUMN_NAME_RATE = "rate";
+        public static final String COLUMN_NAME_USER_ID = "uid";
     }
 
 }

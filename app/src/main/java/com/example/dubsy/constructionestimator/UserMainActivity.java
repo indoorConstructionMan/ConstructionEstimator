@@ -27,13 +27,17 @@ public class UserMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         salutations = findViewById(R.id.title);
+        salutations.setText("Welcome " + UserSession.getInstance().getUserName() + "!");
+        // Not very readable.
 
-//        String user = getIntent().getExtras().getString("user");
-//        salutations.setText("Welcome " + user + "!");
+        String n = UserSession.getInstance().getUserName();
+        int uid = UsersDbHelper.getInstance(getApplicationContext()).getUserId(n);
+        UserSession.getInstance().setUserId(uid);
 
         this.contractsList = findViewById(R.id.contractsList);
         // currently gets all contracts for all users.
-        ArrayList<ContractsModel> x = UsersDbHelper.getInstance(getApplicationContext()).grabAllContracts();
+        ArrayList<ContractsModel> x = UsersDbHelper.getInstance(getApplicationContext()).grabAllContracts(true, UserSession.getInstance().getUserId());
+
         this.contractsAdapter = new ContractsAdapter(this, new ArrayList<ContractsModel>());
         this.contractsAdapter.addAll(x);
         this.contractsList.setAdapter(contractsAdapter);
