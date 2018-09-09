@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.DatabaseSchema;
-import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "All fields Required",Toast.LENGTH_SHORT).show();
         } else {
 
-            SQLiteDatabase db = UsersDbHelper.getInstance(getApplicationContext()).getReadableDatabase();
+            SQLiteDatabase db = ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).getReadableDatabase();
             String[] projection = {
                     BaseColumns._ID,
                     DatabaseSchema.Users.COLUMN_NAME_USERNAME,

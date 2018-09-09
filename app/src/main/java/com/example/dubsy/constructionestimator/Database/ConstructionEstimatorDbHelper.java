@@ -14,7 +14,7 @@ import com.example.dubsy.constructionestimator.Utilities.UserSession;
 
 import java.util.ArrayList;
 
-public class UsersDbHelper extends SQLiteOpenHelper {
+public class ConstructionEstimatorDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "drywall_contracts_database.db";
@@ -50,16 +50,16 @@ public class UsersDbHelper extends SQLiteOpenHelper {
 
 
     // Dbhelper singleton
-    private static UsersDbHelper sInstance;
+    private static ConstructionEstimatorDbHelper sInstance;
 
-    public static synchronized UsersDbHelper getInstance(Context context) {
+    public static synchronized ConstructionEstimatorDbHelper getInstance(Context context) {
         if (sInstance == null) {
-            sInstance = new UsersDbHelper(context.getApplicationContext());
+            sInstance = new ConstructionEstimatorDbHelper(context.getApplicationContext());
         }
         return sInstance;
     }
 
-    private UsersDbHelper(Context context) {
+    private ConstructionEstimatorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

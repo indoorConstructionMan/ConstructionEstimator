@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
-import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         UsersModel user = new UsersModel(username.getText().toString(), email.getText().toString(), new md5().md5(plaintext));
-        if (UsersDbHelper.getInstance(getApplicationContext()).userExist(user)) {
+        if (ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).userExist(user)) {
             Toast.makeText(getApplicationContext(),"Username already exists.",Toast.LENGTH_SHORT).show();
             empty = true;
         }
@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
             UserSession.getInstance().setEmail(email.getText().toString());
             UserSession.getInstance().setUserName(username.getText().toString());
 
-            UsersDbHelper.getInstance(getApplicationContext()).createUserAccount(user);
+            ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).createUserAccount(user);
 
             Intent myIntent = new Intent(RegisterActivity.this, UserMainActivity.class);
             RegisterActivity.this.startActivity(myIntent);

@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
-import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
+
 
 public class ContractInformationActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class ContractInformationActivity extends AppCompatActivity {
                 this.siteRate.getText().toString()
         );
 
-        UsersDbHelper.getInstance(getApplicationContext()).createContract(m);
+        ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).createContract(m);
         Toast.makeText(getApplicationContext(), "Contract saved!",Toast.LENGTH_SHORT).show();
     }
 

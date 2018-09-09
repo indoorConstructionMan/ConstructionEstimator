@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
-import com.example.dubsy.constructionestimator.Database.UsersDbHelper;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
 
 import java.util.ArrayList;
@@ -28,16 +28,13 @@ public class UserMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_main);
         salutations = findViewById(R.id.title);
         salutations.setText("Welcome " + UserSession.getInstance().getUserName() + "!");
-        // Not very readable.
 
         String n = UserSession.getInstance().getUserName();
-        int uid = UsersDbHelper.getInstance(getApplicationContext()).getUserId(n);
+        int uid = ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).getUserId(n);
         UserSession.getInstance().setUserId(uid);
 
         this.contractsList = findViewById(R.id.contractsList);
-        // currently gets all contracts for all users.
-        ArrayList<ContractsModel> x = UsersDbHelper.getInstance(getApplicationContext()).grabAllContracts(true, UserSession.getInstance().getUserId());
-
+        ArrayList<ContractsModel> x = ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).grabAllContracts(true, UserSession.getInstance().getUserId());
         this.contractsAdapter = new ContractsAdapter(this, new ArrayList<ContractsModel>());
         this.contractsAdapter.addAll(x);
         this.contractsList.setAdapter(contractsAdapter);
@@ -48,7 +45,6 @@ public class UserMainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), String.valueOf(i),Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(view.getContext(), DetailedJobActivity.class);
                 startActivityForResult(myIntent, 0);
-
             }
         });
     }
