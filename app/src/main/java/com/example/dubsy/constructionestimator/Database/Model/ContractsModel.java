@@ -3,7 +3,7 @@ package com.example.dubsy.constructionestimator.Database.Model;
 public class ContractsModel {
 
     public String siteAddress;
-    public int boardFootage;
+    private int boardFootage;
     public int rate;
 
     public ContractsModel(String address, String footage, String rate){
@@ -28,7 +28,11 @@ public class ContractsModel {
     }
 
     public String getSiteAddress() {
-        return this.siteAddress;
+        try {
+            return this.siteAddress;
+        } catch (Exception e) {
+            return " ";
+        }
     }
 
     public void setBoardFootage(String footage) {
@@ -49,17 +53,13 @@ public class ContractsModel {
 
     @Override
     public boolean equals(Object m) {
-        if (m == this) {
-            return true;
-        } else if (!(m instanceof ContractsModel)) {
-            return false;
-        } else {
-            if (!(!this.getSiteAddress().equals(((ContractsModel) m).getSiteAddress()) ||
-                    !(this.getBoardFootage() == (((ContractsModel) m).getBoardFootage())))) {
-                return true;
-            }
-            return false;
+
+        if (m instanceof ContractsModel) {
+            String mSiteAddress = ((ContractsModel) m).getSiteAddress();
+            int mBoardFootage = ((ContractsModel) m).getBoardFootage();
+            return m == this || this.getSiteAddress().equals(mSiteAddress) && this.getBoardFootage() == mBoardFootage;
         }
+        return false;
 
     }
 }

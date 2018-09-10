@@ -19,4 +19,14 @@
     <string name="setup_contract">Save Contract</string>
     <string name="detailed_view">Save Contract</string>
     <string name="back_button">Back</string>
+
+    <string-array name="detailed_job_tabs">
+        <item>Analytics</item>
+        <item>Timer</item>
+        <item>Board</item>
+        <item>Employee</item>
+    </string-array>
+
+
+
 </resources>

@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dubsy.constructionestimator.Adapters.ContractsAdapter;
 import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.Model.ContractsModel;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
@@ -27,7 +28,8 @@ public class UserMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         salutations = findViewById(R.id.title);
-        salutations.setText("Welcome " + UserSession.getInstance().getUserName() + "!");
+        String salutations_text = "Welcome " + UserSession.getInstance().getUserName() + "!";
+        salutations.setText(salutations_text);
 
         String n = UserSession.getInstance().getUserName();
         int uid = ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).getUserId(n);
