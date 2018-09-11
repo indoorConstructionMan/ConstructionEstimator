@@ -1,26 +1,49 @@
 package com.example.dubsy.constructionestimator;
 
-import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.dubsy.constructionestimator.Adapters.MyPagesAdapter;
+import com.example.dubsy.constructionestimator.Adapters.ViewPagerAdapter;
 
 public class DetailedJobActivity extends AppCompatActivity {
-
-    String pageData[];          //Stores the text to swipe.
-    LayoutInflater inflater;    //Used to create individual pages
-    ViewPager vp;               //Reference to class to swipe views
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_job);
-        pageData=getResources().getStringArray(R.array.detailed_job_tabs);
-        inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        vp=findViewById(R.id.viewPager);
-        vp.setAdapter(new MyPagesAdapter(inflater, pageData));
+
+        final ViewPager viewPager = findViewById(R.id.viewPager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        adapter.addFragment(new FragmentAnalytics(), "Analytics");
+        adapter.addFragment(new FragmentTimer(), "Timer");
+        adapter.addFragment(new FragmentBoard(), "Board");
+        adapter.addFragment(new FragmentEmployee(), "Employee");
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
+
 }
