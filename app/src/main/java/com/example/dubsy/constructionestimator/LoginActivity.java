@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.DatabaseSchema;
+import com.example.dubsy.constructionestimator.Utilities.BCrypt;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
@@ -77,9 +78,10 @@ public class LoginActivity extends AppCompatActivity {
             if (hashedPasswords.isEmpty()) {
                 Toast.makeText(getApplicationContext(), username.getText().toString() + " does not exist.",Toast.LENGTH_SHORT).show();
             } else if (hashedPasswords.size() == 1) {
-                if (hashedPassword.equals(new md5().md5(password.getText().toString()))) {
+                if (BCrypt.checkpw(password.getText().toString(), hashedPassword)) {
                     UserSession.getInstance().setUserName(username.getText().toString());
-                    Toast.makeText(getApplicationContext(), "Logging in.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Logging in.",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Logging in.",Toast.LENGTH_SHORT).show();
                     Intent myIntent = new Intent(LoginActivity.this, UserMainActivity.class);
                     LoginActivity.this.startActivity(myIntent);
                 } else {

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.dubsy.constructionestimator.Database.ConstructionEstimatorDbHelper;
 import com.example.dubsy.constructionestimator.Database.Model.UsersModel;
+import com.example.dubsy.constructionestimator.Utilities.BCrypt;
 import com.example.dubsy.constructionestimator.Utilities.UserSession;
 import com.example.dubsy.constructionestimator.Utilities.md5;
 
@@ -39,8 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
         if(plaintext.matches("") || plaintextconfirm.matches("") || username.getText().toString().matches("") || email.getText().toString().matches("")) {
             empty = true;
         }
-
-        UsersModel user = new UsersModel(username.getText().toString(), email.getText().toString(), new md5().md5(plaintext));
+        String hashed = BCrypt.hashpw(plaintext, BCrypt.gensalt(12));
+        UsersModel user = new UsersModel(username.getText().toString(), email.getText().toString(), hashed);
         if (ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).userExist(user)) {
             Toast.makeText(getApplicationContext(),"Username already exists.",Toast.LENGTH_SHORT).show();
             empty = true;
@@ -49,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (new String(plaintext).equals(plaintextconfirm) && !empty) {
             UserSession.getInstance().setEmail(email.getText().toString());
             UserSession.getInstance().setUserName(username.getText().toString());
+            Toast.makeText(getApplicationContext(),hashed,Toast.LENGTH_SHORT).show();
 
             ConstructionEstimatorDbHelper.getInstance(getApplicationContext()).createUserAccount(user);
 
