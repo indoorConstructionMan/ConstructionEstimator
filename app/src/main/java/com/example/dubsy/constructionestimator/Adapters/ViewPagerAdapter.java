@@ -3,36 +3,40 @@ package com.example.dubsy.constructionestimator.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dubsy.constructionestimator.Fragments.FragmentAnalytics;
+import com.example.dubsy.constructionestimator.Fragments.FragmentBoard;
+import com.example.dubsy.constructionestimator.Fragments.FragmentEmployee;
+import com.example.dubsy.constructionestimator.Fragments.FragmentTimer;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+    int tabCount;
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    public ViewPagerAdapter(FragmentManager manager, int tabCount) {
         super(manager);
+        this.tabCount = tabCount;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+        switch (position) {
+            case 0:
+                return new FragmentAnalytics();
+            case 1:
+                return new FragmentTimer();
+            case 2:
+                return new FragmentBoard();
+            case 3:
+                return new FragmentEmployee();
+            default:
+                return null;
+        }
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return this.tabCount;
     }
 
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
-    }
 }

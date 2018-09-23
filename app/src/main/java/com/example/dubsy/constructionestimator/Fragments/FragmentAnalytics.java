@@ -1,4 +1,4 @@
-package com.example.dubsy.constructionestimator;
+package com.example.dubsy.constructionestimator.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,14 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentAnalytics extends Fragment {
-    public FragmentAnalytics() {
-    }
+import com.example.dubsy.constructionestimator.R;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+public class FragmentAnalytics extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

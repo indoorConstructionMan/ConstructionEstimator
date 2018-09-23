@@ -1,49 +1,51 @@
 package com.example.dubsy.constructionestimator;
 
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.example.dubsy.constructionestimator.Adapters.ViewPagerAdapter;
 
-public class DetailedJobActivity extends AppCompatActivity {
+public class DetailedJobActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_job);
 
-        final ViewPager viewPager = findViewById(R.id.viewPager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        this.tabLayout = findViewById(R.id.tabs);
 
-        adapter.addFragment(new FragmentAnalytics(), "Analytics");
-        adapter.addFragment(new FragmentTimer(), "Timer");
-        adapter.addFragment(new FragmentBoard(), "Board");
-        adapter.addFragment(new FragmentEmployee(), "Employee");
-        viewPager.setAdapter(adapter);
+        tabLayout.addTab(tabLayout.newTab().setText("Analytics"));
+        tabLayout.addTab(tabLayout.newTab().setText("Timer"));
+        tabLayout.addTab(tabLayout.newTab().setText("Board"));
+        tabLayout.addTab(tabLayout.newTab().setText("Employee"));
+        tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        this.viewPager = findViewById(R.id.viewPager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        this.viewPager.setAdapter(adapter);
+        this.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(this);
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        this.viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
 }
